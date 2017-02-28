@@ -29,11 +29,41 @@ Das Apache Spark - WordCount Programm wurde mit diesem Tutorial realisiert:
 http://www.javaworld.com/article/2972863/big-data/open-source-java-projects-apache-spark.html
 
 ### Ausführung
-Das WordCount Programm kann über die Konsole gestartet werden.
+Das WordCount Programm kann über die Konsole gestartet werden. Als Eingabe wird das Buch *pg27827.txt* angegeben, welches zuvor in das HDFS kopiert worden ist.
 
 ```
-spark-submit --class de.fhms.bde.uebung7.JavaWordCount \
---master local --deploy-mode client --executor-memory 1g \
---name wordcount --conf "spark.app.id=wordcount" \
-uebung7-1.0.jar hdfs://quickstart.cloudera:8020/uebung7/person.txt
+spark-submit --class de.fhms.bde.uebung7.spark.JavaWordCount --master local --deploy-mode client --executor-memory 1g --name wordcount --conf "spark.app.id=wordcount" uebung7-1.0.jar hdfs://quickstart.cloudera:8020/user/cloudera/pg27827.txt
+```
+
+Die Variante mit funktionaler Programmierung ist nicht unterstützt, da Java 8 benötigt wird, die auf der CDH standardmäßig nicht installiert ist:
+```
+Exception in thread "main" java.lang.UnsupportedClassVersionError: de/fhms/bde/uebung7/spark/JavaWordCount : Unsupported major.minor version 52.0
+```
+
+Nach Veränderung der Build-Version auf 1.7 kann die *.jar* ausgeführt werden und das Ergebnis betrachtet.
+
+```
+hdfs dfs -cat /user/cloudera/output/part-00000 | sort -g -k2 -r | less
+
+(Zola,,1)
+(Zodiac,,1)
+(zenana,1)
+(youthful,1)
+(youth;,1)
+(youth,1)
+(youth,,1)
+(YOURSELF.,1)
+(your,16)
+(younger,8)
+(YOUNGER,1)
+(young,30)
+(Young,1)
+(young;,1)
+(young,,1)
+(you,64)
+(YOU,6)
+(you.,4)
+(you,,4)
+(You,12)
+
 ```
