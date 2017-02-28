@@ -20,7 +20,7 @@ Dieses Beispiel wurde für die **Cloudera Quickstart VM** entwickelt und dements
 Die kompilierte *.jar* Datei muss zunächst in die Cloudera VM kopiert werden. Dies kann über *WinSCP* oder die Konsole erfolgen.
 
 ```
-scp -r -P 2222 root@localhost:/resource/uebung5-1.0.jar ~/uebung5
+scp -r -P 2222 root@localhost:/target/uebung5-1.0.jar ~/uebung5
 ```
 
 ### Implementierung

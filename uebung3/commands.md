@@ -29,6 +29,7 @@ Die kompilierte *.jar* Datei und die *person.txt* muss zunächst in die Cloudera
 
 ```
 scp -r -P 2222 root@localhost:/resource/person.txt ~/uebung3
+scp -r -P 2222 root@localhost:/target/uebung3-1.0.jar ~/uebung3
 ```
 
 Im Anschluss wird die generierte *person.txt* ins HDFS File System kopiert. Dazu können die Befehle aus Übung 1 verwendet werden.
